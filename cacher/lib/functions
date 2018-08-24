@@ -1,0 +1,41 @@
+#!/bin/bash
+
+tdeps() {
+  # shellcheck disable=SC2154
+  for pkg in "${pkg_deps[@]}"
+  do
+    if [ -e "$(hab pkg path "$pkg")/TDEPS" ]
+    then
+      cat "$(hab pkg path "$pkg")/TDEPS" | sed 's@^@/hab/pkgs/@g'
+    fi
+  done
+
+  # shellcheck disable=SC2154
+  for pkg in "${pkg_build_deps[@]}"
+  do
+    if [ -e "$(hab pkg path "$pkg")/TDEPS" ]
+    then
+      cat "$(hab pkg path "$pkg")/TDEPS" | sed 's@^@/hab/pkgs/@g'
+    fi
+  done
+  return $?
+}
+
+archive() {
+  for directory in $1
+  #for directory in $(tdeps | sort --unique)
+  do
+    tar uf archive.tar $directory
+  done
+  gzip --force archive.tar
+  return $?
+}
+
+extract() {
+  if [ -e archive.tar.gz ]
+  then
+    tar -xf archive.tar.gz
+    #tar -xf archive.tar.gz --directory="/"
+  fi
+  return $?
+}
