@@ -9,8 +9,9 @@ pkg_deps=(
 
 
 do_setup_environment() {
-  mkdir --parents "/hab/cache/artifacts/studio_cache"
-  set_runtime_env XDG_CACHE_HOME "/hab/cache/artifacts/studio_cache"
+  mkdir --parents                  "/hab/cache/artifacts/studio_cache"
+  set_runtime_env XDG_CACHE_HOME   "/hab/cache/artifacts/studio_cache"
+  set_runtime_env npm_config_cache "/hab/cache/artifacts/studio_cache"
 }
 
 do_build() {
@@ -25,5 +26,6 @@ do_end() {
   build_line ""
   build_line "Cache settings:"
   build_line "$(hab pkg exec "$pkg_origin/$pkg_name" env | grep XDG_CACHE_HOME)"
+  build_line "$(hab pkg exec "$pkg_origin/$pkg_name" env | grep npm_config_cache)"
   return $?
 }
