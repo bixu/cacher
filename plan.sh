@@ -10,21 +10,21 @@ pkg_deps=(
 
 do_setup_environment() {
   # enable caching for Go dependencies
-  mkdir --parents                  "/hab/cache/artifacts/studio_cache/go"
-  set_runtime_env GOPATH           "/hab/cache/artifacts/studio_cache/go"
+  mkdir --parents                    "/hab/cache/artifacts/studio_cache/go"
+  set_buildtime_env GOPATH           "/hab/cache/artifacts/studio_cache/go"
 
   # enable caching for NPM modules
-  mkdir --parents                  "/hab/cache/artifacts/studio_cache/npm"
-  set_runtime_env npm_config_cache "/hab/cache/artifacts/studio_cache/npm"
+  mkdir --parents                    "/hab/cache/artifacts/studio_cache/npm"
+  set_buildtime_env npm_config_cache "/hab/cache/artifacts/studio_cache/npm"
 
   # enable caching for Pip modules
-  mkdir --parents                  "/hab/cache/artifacts/studio_cache/pip"
-  set_runtime_env XDG_CACHE_HOME   "/hab/cache/artifacts/studio_cache/pip"
+  mkdir --parents                    "/hab/cache/artifacts/studio_cache/pip"
+  set_buildtime_env XDG_CACHE_HOME   "/hab/cache/artifacts/studio_cache/pip"
   
   # enable caching for Ruby gems
-  mkdir --parents                  "/hab/cache/artifacts/studio_cache/rubygems"
-  set_runtime_env GEM_HOME         "/hab/cache/artifacts/studio_cache/rubygems"
-  set_runtime_env GEM_PATH         "/hab/cache/artifacts/studio_cache/rubygems"
+  mkdir --parents                    "/hab/cache/artifacts/studio_cache/rubygems"
+  set_buildtime_env GEM_HOME         "/hab/cache/artifacts/studio_cache/rubygems"
+  set_buildtime_env GEM_PATH         "/hab/cache/artifacts/studio_cache/rubygems"
 }
 
 do_build() {
