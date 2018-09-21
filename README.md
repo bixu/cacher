@@ -12,7 +12,7 @@ Library Package
 
 ## Usage
 
-Include `bixu/cacher` in your `pkg_build_deps` to enable cachine of `pip`-managed modules. At this time only `pip` caching is supported, with support for other dependency managers planned:
+In this example, include `bixu/cacher` in your `pkg_build_deps` to enable cachine of Python modules managed with `pip`, Node  modules managed with `npm`, `go` dependencies and Ruby gems:
 ```
 pkg_build_deps=(
   bixu/cacher
